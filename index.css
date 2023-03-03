@@ -69,11 +69,12 @@ input[type="text"]
     border-radius: 50px;
     width:1000px;
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+    
 }
 #search{
     display: inline-block;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 8px;
     background-color: #6051b688;
     border:none;
     font-weight: bold;
@@ -122,7 +123,15 @@ input[type="text"]
     opacity: 1;
     transition: 0s
   }
-  #map { 
+
+
+#content{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#map  { 
 height: 400px; 
 width: 300px;
 margin-top: 50px;
@@ -130,3 +139,14 @@ border-radius: 20px;
 box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
 
 }
+#gif{
+  height: 250px; 
+width: 300px;
+margin-top: 50px;
+border-radius: 20px;
+box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+
+
+}
+
+

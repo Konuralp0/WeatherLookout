@@ -1,8 +1,15 @@
+
 const degree = document.getElementById("degree");
 
 const search = document.getElementById("search");
 
+const container = document.getElementById("container");
+
 let temperature = 0;
+
+let weather = "";
+
+const giphyAPI = "hJbjgBVp70ZI2v0EQJCL4bFOg3k4PLy9";
 
 var map = L.map('map').setView([0, 0], 1);
 
@@ -34,7 +41,8 @@ function getInputValue(){
 
 search.addEventListener("click", async function(){
     getInputValue();
-    getData();
+    getWeather();
+    
     
     
 
@@ -43,14 +51,17 @@ search.addEventListener("click", async function(){
 });
 
 
-async function getData(){
+async function getWeather(){
   try{
   const response = await fetch(`https://forecast9.p.rapidapi.com/rapidapi/forecast/${inputValue}/hourly/`, options);
   const data = await response.json();
   temperature = data.forecast.items[16].temperature.avg;
+  weather =  data.forecast.items[16].weather.text;
+  console.log(weather);
+  renderGif();
   const lat = data.location.coordinates.latitude;
   const longi = data.location.coordinates.longitude;
-  L.marker([lat,longi ]).addTo(map);
+  //L.marker([lat,longi ]).addTo(map);
   map.setView([lat,longi],10)
   degree.textContent = `In ${inputValue} is right now ${temperature} Celsius`;
   }catch(error){
@@ -59,6 +70,37 @@ async function getData(){
   }
 
 }
+
+
+async function renderGif(){
+  try{
+    
+    const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${giphyAPI}&q=${weather}&limit=25&offset=0&rating=g&lang=en`);
+    const gifData = await response.json();
+    const url = gifData.data[0].images.downsized.url
+    container.innerHTML = `
+    <p id="container">
+    <img id="gif" src="${url}" alt="gif">
+    </p>
+    
+    
+    `
+
+
+  
+
+
+  }catch(error){
+    degree.textContent = error;
+
+
+  }
+
+
+
+}
+
+
 
 
 
