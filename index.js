@@ -13,7 +13,7 @@ let da = new Date();
 
 let weather = "";
 
-const giphyAPI = "hJbjgBVp70ZI2v0EQJCL4bFOg3k4PLy9";
+const giphyAPI = "dbyLKXs9XxYhd9vmKR6JUeSxILus3Ky8";
 
 var map = L.map('map').setView([0, 0], 1);
 
@@ -88,9 +88,9 @@ async function getWeather(){
 async function renderGif(){
   try{
 
-    const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${giphyAPI}&q=${weather}&limit=25&offset=23&rating=g&lang=en`);
+    const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${giphyAPI}&q=${weather}&limit=2&offset=2&rating=g&lang=en`);
     const gifData = await response.json();
-    const url = gifData.data[2].images.downsized.url
+    const url = gifData.data[1].images.downsized.url
     container.innerHTML = `
     <p id="container">
     <img id="gif" src="${url}" alt="gif">
